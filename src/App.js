@@ -8,6 +8,8 @@ import Footer from "./component/StaticComponent/Footer";
 
 import LoginPage from "./component/LoginPage";
 import RegisterPage from "./component/ResgisterPage";
+
+import Register from "./component/StaticComponent/Register";
 function App() {
   return (
     <div className="App">

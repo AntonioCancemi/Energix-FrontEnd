@@ -1,29 +1,26 @@
-import React, { useState } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Container, Form, Button } from "react-bootstrap";
 function RegisterPage() {
-  const [name, setName] = useState('');
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [roles, setRoles] = useState([]);
- 
-  
-  
+
   const handleRegister = (e) => {
-    const url="localhost:8080/api/auth/signup";
-    const postData={
-      name:name,
-      username:username,
-      email:email,
-      password:password,
-      roles:roles,
-      
-    }
-    
+    const url = "localhost:8080/api/auth/signup";
+    const postData = {
+      name: name,
+      username: username,
+      email: email,
+      password: password,
+      roles: roles,
+    };
+
     fetch(url, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(postData),
     })
@@ -35,8 +32,7 @@ function RegisterPage() {
       .catch((error) => {
         console.error(error);
       });
-    
-    
+
     e.preventDefault();
     // Logica di registrazione qui...
   };
@@ -95,7 +91,7 @@ function RegisterPage() {
             type="text"
             placeholder="Enter roles (comma-separated)"
             value={roles}
-            onChange={(e) => setRoles(e.target.value.split(','))}
+            onChange={(e) => setRoles(e.target.value.split(","))}
             className="register-input"
           />
         </Form.Group>
