@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
+import { useDispatch } from 'react-redux';
+import { SetTokenType, setToken  } from "../redux/actions/UserActions";
 
 function LoginPage() {
+  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
   const handleLogin = (e) => {
     const url = "http://localhost:8080/api/auth/login";
+    var dataObj={
+      username:String,
+      accessToken:String,
+      tokenType:String,
+    }
     const postLogin = {
       username: username,
       password: password,
@@ -16,12 +23,15 @@ function LoginPage() {
       method: "post",
       headers: {
         "Content-Type": "application/json",
+        
       },
       body: JSON.stringify(postLogin),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        dataObj=data
+
+      dispatch(setToken(dataObj))
       })
       .catch((error) => {
         console.error(error);

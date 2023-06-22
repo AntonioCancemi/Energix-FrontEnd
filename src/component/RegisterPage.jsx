@@ -19,20 +19,19 @@ function RegisterPage() {
       password: password,
       roles: roles,
     };
-    console.log("ciao");
 
     fetch(url, {
-      method: "post",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(postData),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data); // Stampa la risposta dal server
-        // Esegui altre azioni a seguito della chiamata POST
-      })
+      .then((response) => console.log("FETCH:"+(response.ok?"ok":"faild")))
+      // .then((data) => {
+      //   console.log(data); // Stampa la risposta dal server
+      //   // Esegui altre azioni a seguito della chiamata POST
+      // })
       .catch((error) => {
         console.error(error);
       });

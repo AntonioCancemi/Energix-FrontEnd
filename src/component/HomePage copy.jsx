@@ -1,6 +1,20 @@
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';import { useSelector } from 'react-redux';
 
 const HomePage=()=>{
+    const auth=useSelector(state=>state.user.auth)
+    const getFatture=()=>{
+    const url = "http://localhost:8080/api/clienti/all/0";  
+    fetch(url,{
+      method:"GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      
+    })
+    .then((response)=>response.json())
+    .then((data)=>console.log(data))
+    }
+    getFatture();
     return(
     <div className="mainParent" >
         <div>
