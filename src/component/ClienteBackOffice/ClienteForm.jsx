@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form, Button, Alert } from "react-bootstrap";
 
 function ClienteForm() {
   const [ragioneSociale, setRagioneSociale] = useState("");
@@ -12,12 +12,62 @@ function ClienteForm() {
   const [cognomeContatto, setCognomeContatto] = useState("");
   const [telefonoContatto, setTelefonoContatto] = useState("");
   const [tipoAzienda, setTipoAzienda] = useState("");
-  const [indirizzo, setIndirizzo] = useState({});
+  const [via, setVia] = useState("");
+  const [civico, setCivico] = useState("");
+  const [localita, setLocalita] = useState("");
+  const [cap, setCap] = useState("");
+  const [comune, setComune] = useState("");
+  const [tipoIndirizzo, setTipoIndirizzo] = useState("");
+
+  const handleRegister = (e) => {
+    const url = "http://localhost:8080/api/clienti";
+    const postData = {
+      ragioneSociale: ragioneSociale,
+      email: email,
+      pec: pec,
+      fatturatoAnnuale: fatturato,
+      telefono: telefono,
+      emailContatto: emailContatto,
+      nomeContatto: nomeContatto,
+      cognomeContatto: cognomeContatto,
+      telefonoContatto: telefonoContatto,
+      tipoCliente: tipoAzienda,
+      indirizzo: {
+        via: via,
+        civico: civico,
+        localita: localita,
+        cap: cap,
+        comune: comune,
+        tipoIndirizzo: tipoIndirizzo,
+      },
+    };
+    console.log("ciao");
+
+    fetch(url, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        alert("Cliente inserito correttamente!!"); // Stampa la risposta dal server
+        // Esegui altre azioni a seguito della chiamata POST
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    e.preventDefault();
+    // Logica di registrazione qui...
+  };
 
   return (
     <Container className="register-container mt-5">
-      <h1 className="register-title">Register</h1>
-      <Form>
+      <h1 className="register-title">Registra un Cliente</h1>
+      <Form onSubmit={handleRegister}>
         <Form.Group controlId="formName">
           <Form.Label className="register-label">Ragione Sociale</Form.Label>
           <Form.Control
@@ -123,11 +173,78 @@ function ClienteForm() {
           value={tipoAzienda}
           onChange={(e) => setTipoAzienda(e.target.value)}
         >
-          <option disabled>Scegli tra i vari tipi</option>
+          <option>Scegli tra i vari tipi</option>
           <option>PA</option>
           <option>SAS</option>
           <option>SPA</option>
           <option>SRL</option>
+        </Form.Select>
+
+        <Form.Group controlId="formName">
+          <Form.Label className="register-label">Via</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Inserisci la via"
+            value={via}
+            onChange={(e) => setVia(e.target.value)}
+            className="register-input"
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formName">
+          <Form.Label className="register-label">Civico</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Inserisci il civico"
+            value={civico}
+            onChange={(e) => setCivico(e.target.value)}
+            className="register-input"
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formName">
+          <Form.Label className="register-label">Località</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Inserisci la località"
+            value={localita}
+            onChange={(e) => setLocalita(e.target.value)}
+            className="register-input"
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formName">
+          <Form.Label className="register-label">Cap</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Inserisci il cap"
+            value={cap}
+            onChange={(e) => setCap(e.target.value)}
+            className="register-input"
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formName">
+          <Form.Label className="register-label">Comune</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Inserisci il comune"
+            value={comune}
+            onChange={(e) => setComune(e.target.value)}
+            className="register-input"
+          />
+        </Form.Group>
+
+        <Form.Label className="register-label">Tipo Indirizzo</Form.Label>
+        <Form.Select
+          aria-label="Default select example"
+          value={tipoIndirizzo}
+          onChange={(e) => setTipoIndirizzo(e.target.value)}
+        >
+          <option>Scegli tra i vari tipi</option>
+          <option>SEDE_OPERATIVA</option>
+          <option>SEDE_LEGALE</option>
+          <option>SEDE_UNICA</option>
         </Form.Select>
 
         <Button variant="primary" type="submit" className="register-button">
