@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -5,8 +6,21 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import { setUser } from '../../redux/actions/UserActions';
+import { useDispatch } from 'react-redux';
 
 function NavBar() {
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(setUser({ 
+      name: "Francesca", 
+      lastname : "Neri",
+      username: "francescaneri", 
+      email: "f.neri@example.com",
+      password: "qwerty", 
+      roles: ["MODERATOR", "USER"] 
+ }))
+  })
   return (
     <>
 {/* false per off canvas, sm,md,ecc.. per altre  */}
