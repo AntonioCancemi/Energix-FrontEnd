@@ -12,12 +12,19 @@ function ClienteForm() {
   const [cognomeContatto, setCognomeContatto] = useState("");
   const [telefonoContatto, setTelefonoContatto] = useState("");
   const [tipoAzienda, setTipoAzienda] = useState("");
+  const [indirizzo, setIndirizzo] = useState({});
   const [via, setVia] = useState("");
   const [civico, setCivico] = useState("");
   const [localita, setLocalita] = useState("");
   const [cap, setCap] = useState("");
   const [comune, setComune] = useState("");
   const [tipoIndirizzo, setTipoIndirizzo] = useState("");
+  const [via2, setVia2] = useState("");
+  const [civico2, setCivico2] = useState("");
+  const [localita2, setLocalita2] = useState("");
+  const [cap2, setCap2] = useState("");
+  const [comune2, setComune2] = useState("");
+  const [tipoIndirizzo2, setTipoIndirizzo2] = useState("");
 
   const handleRegister = (e) => {
     const url = "http://localhost:8080/api/clienti";
@@ -32,20 +39,31 @@ function ClienteForm() {
       cognomeContatto: cognomeContatto,
       telefonoContatto: telefonoContatto,
       tipoCliente: tipoAzienda,
-      indirizzo: {
-        via: via,
-        civico: civico,
-        localita: localita,
-        cap: cap,
-        comune: comune,
-        tipoIndirizzo: tipoIndirizzo,
-      },
+      indirizzi: [
+        {
+          via: via,
+          civico: civico,
+          localita: localita,
+          cap: cap,
+          comune: comune,
+          tipoIndirizzo: tipoIndirizzo,
+        },
+        {
+          via: via2,
+          civico: civico2,
+          localita: localita2,
+          cap: cap2,
+          comune: comune2,
+          tipoIndirizzo: tipoIndirizzo2,
+        },
+      ],
     };
-    console.log("ciao");
-
+    console.log(postData);
     fetch(url, {
       method: "post",
       headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYXZ5MTA0QGhvdG1haWwuaXQiLCJpYXQiOjE2ODc0NTA4MDgsImV4cCI6MTY4ODMxNDgwOH0.arYFOmdNP6G8ISB0cj2TwD0qXGc1_CTprPosszb01b4",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(postData),
@@ -240,6 +258,73 @@ function ClienteForm() {
           aria-label="Default select example"
           value={tipoIndirizzo}
           onChange={(e) => setTipoIndirizzo(e.target.value)}
+        >
+          <option>Scegli tra i vari tipi</option>
+          <option>SEDE_OPERATIVA</option>
+          <option>SEDE_LEGALE</option>
+          <option>SEDE_UNICA</option>
+        </Form.Select>
+
+        <Form.Group controlId="formName">
+          <Form.Label className="register-label">Via</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Inserisci la via"
+            value={via2}
+            onChange={(e) => setVia2(e.target.value)}
+            className="register-input"
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formName">
+          <Form.Label className="register-label">Civico</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Inserisci il civico"
+            value={civico2}
+            onChange={(e) => setCivico2(e.target.value)}
+            className="register-input"
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formName">
+          <Form.Label className="register-label">Località</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Inserisci la località"
+            value={localita2}
+            onChange={(e) => setLocalita2(e.target.value)}
+            className="register-input"
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formName">
+          <Form.Label className="register-label">Cap</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Inserisci il cap"
+            value={cap2}
+            onChange={(e) => setCap2(e.target.value)}
+            className="register-input"
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formName">
+          <Form.Label className="register-label">Comune</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Inserisci il comune"
+            value={comune2}
+            onChange={(e) => setComune2(e.target.value)}
+            className="register-input"
+          />
+        </Form.Group>
+
+        <Form.Label className="register-label">Tipo Indirizzo</Form.Label>
+        <Form.Select
+          aria-label="Default select example"
+          value={tipoIndirizzo2}
+          onChange={(e) => setTipoIndirizzo2(e.target.value)}
         >
           <option>Scegli tra i vari tipi</option>
           <option>SEDE_OPERATIVA</option>

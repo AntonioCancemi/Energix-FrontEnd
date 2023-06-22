@@ -19,11 +19,13 @@ function FatturaForm() {
       statoFattura: statoFattura,
       idCliente: cliente,
     };
-    console.log("ciao");
+    console.log(postData);
 
     fetch(url, {
       method: "post",
       headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYWxjYW5AZXhhbXBsZS5jb20iLCJpYXQiOjE2ODc0NTQ1ODUsImV4cCI6MTY4ODMxODU4NX0.6lE7Pk8hO6Sn-Ul3MxWOblzBRigOGMnCXJW65akCsI0",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(postData),
