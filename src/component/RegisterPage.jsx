@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
+
 function RegisterPage() {
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");

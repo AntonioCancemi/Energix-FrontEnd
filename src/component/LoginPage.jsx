@@ -1,9 +1,32 @@
-import React from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Container, Form, Button } from "react-bootstrap";
 
 function LoginPage() {
-  
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleLogin = (e) => {
+    const url = "http://localhost:8080/api/auth/login";
+    const postLogin = {
+      username: username,
+      password: password,
+    };
+
+    fetch(url, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postLogin),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
     e.preventDefault();
     // Logica di autenticazione qui...
   };
@@ -13,10 +36,12 @@ function LoginPage() {
       <h1 className="login-title">Login</h1>
       <Form className="login-form" onSubmit={handleLogin}>
         <Form.Group controlId="formEmail">
-          <Form.Label className="login-label">Email</Form.Label>
+          <Form.Label className="login-label">Username</Form.Label>
           <Form.Control
-            type="email"
-            placeholder="Enter email"
+            type="text"
+            placeholder="Enter username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             className="login-input"
           />
         </Form.Group>
@@ -26,6 +51,8 @@ function LoginPage() {
           <Form.Control
             type="password"
             placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="login-input"
           />
         </Form.Group>
