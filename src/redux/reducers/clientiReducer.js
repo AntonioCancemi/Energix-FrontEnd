@@ -1,4 +1,4 @@
-import { SAVE_CLIENTE, DELETE_CLIENTE } from "../actions/ClientiActions";
+import { SAVE_CLIENTE, DELETE_CLIENTE } from "../actions/clientiActions";
 const initialState = {
   clienti: [],
 };
