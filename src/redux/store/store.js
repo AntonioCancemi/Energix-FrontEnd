@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import UserReducer from "../reducers/UserReducer";
-import ClientiReducer from "../reducers/ClientiReducer";
+import ClientiReducer from "../reducers/clientiReducer";
 
 const bigReducer = combineReducers({
   user: UserReducer,

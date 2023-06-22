@@ -8,7 +8,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/actions/UserActions';
-
+import { AiOutlineHome, AiOutlineUsergroupDelete, AiOutlineProfile } from "react-icons/ai";
 function NavBar() {
   const dispatch = useDispatch();
   useEffect(()=>{
@@ -50,8 +50,16 @@ function NavBar() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1">Home</Nav.Link>
-                  <Nav.Link href="#action2">Link</Nav.Link>
+                <Nav.Link href="#action1">
+                    <AiOutlineHome /> Home
+                  </Nav.Link>
+                  <Nav.Link href="#action2">
+                    <AiOutlineUsergroupDelete /> Clienti
+                  </Nav.Link>
+                  <Nav.Link href="#action2">
+                    <AiOutlineProfile /> Fatture
+                  </Nav.Link>
+
                   <NavDropdown
                     title="Dropdown"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
