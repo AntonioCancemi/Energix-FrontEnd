@@ -9,6 +9,7 @@ import Footer from "./component/StaticComponent/Footer";
 import LoginPage from "./component/LoginPage";
 import RegisterPage from "./component/RegisterPage";
 import ClienteForm from "./component/ClienteBackOffice/ClienteForm";
+import FatturaForm from "./component/ClienteBackOffice/FatturaForm";
 
 
 
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/fattura" element={<FatturaForm />} />
           <Route path="/cliente" element={<ClienteForm />} />
           <Route path="/homePage" element={<HomePage />} />
         </Routes>
