@@ -2,23 +2,26 @@ import React, { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 function RegisterPage() {
   const [name, setName] = useState("");
+  const [lastname, setLastname] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [roles, setRoles] = useState([]);
 
   const handleRegister = (e) => {
-    const url = "localhost:8080/api/auth/signup";
+    const url = "http://localhost:8080/api/auth/register";
     const postData = {
       name: name,
+      lastname: lastname,
       username: username,
       email: email,
       password: password,
       roles: roles,
     };
+    console.log("ciao");
 
     fetch(url, {
-      method: "POST",
+      method: "post",
       headers: {
         "Content-Type": "application/json",
       },
@@ -48,6 +51,17 @@ function RegisterPage() {
             placeholder="Enter name"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            className="register-input"
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formLastname">
+          <Form.Label className="register-label">Lastname</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter lastname"
+            value={lastname}
+            onChange={(e) => setLastname(e.target.value)}
             className="register-input"
           />
         </Form.Group>
