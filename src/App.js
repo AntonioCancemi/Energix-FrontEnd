@@ -7,7 +7,7 @@ import NavBar from "./component/StaticComponent/NavBar";
 import Footer from "./component/StaticComponent/Footer";
 
 import LoginPage from "./component/LoginPage";
-import RegisterPage from "./component/ResgisterPage";
+import RegisterPage from "./component/RegisterPage";
 
 import Register from "./component/StaticComponent/Register";
 function App() {
